@@ -1,18 +1,7 @@
 defmodule Taas do
-  @moduledoc """
-  Documentation for Taas.
-  """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Taas.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def run(total_players, cards_per_hand) do
+    Deck.get_instance
+    |> Deck.get_hands([], cards_per_hand, total_players)
+    |> Enum.map(fn h -> Deck.nice_print(h) end)
   end
 end

@@ -10,18 +10,10 @@ defmodule Deck do
   end
 
   def get_instance do
-    # suits = ['Spade', 'Heart', 'Club', '\u2666']
     suits = ["\u2660", "\u2665", "\u2663", "\u2666"]
-
-    1..13
-    |> Enum.map(fn r ->
-      Enum.map(
-        suits,
-        fn s -> %{rank: r, suit: s, name: "#{r}#{s}"} end
-      )
-    end)
-    |> List.flatten()
-    |> Enum.shuffle()
+    (
+      for r <- 1..13, s <- suits, do: %{rank: r, suit: s, name: "#{r}#{s}"}
+    ) |> Enum.shuffle
   end
 
   def get_hand(cards, cards_per_hand) do
